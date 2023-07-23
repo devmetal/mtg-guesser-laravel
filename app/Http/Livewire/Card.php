@@ -17,17 +17,15 @@ class Card extends Component
 
     public string $cmc = "";
 
-    public mixed $colors = [];
+    public $colors = [];
 
     public bool $evaluated = false;
-
-    protected $listeners = ['colorsChanged'];
 
     public function evaluate()
     {
         $score = 0;
-        $cardColors = $this->card['colors']; // ['W', 'B']
-        $cardCmc = $this->card['cmc']; // 4
+        $cardColors = $this->card['colors'];
+        $cardCmc = $this->card['cmc'];
 
         if (intval($this->cmc) === $cardCmc) {
             $score++;
@@ -50,17 +48,11 @@ class Card extends Component
         return count($this->colors) > 0 && strlen($this->cmc) > 0;
     }
 
-    public function colorsChanged($colors)
-    {
-        $this->colors = $colors;
-    }
-
     public function loadCard(): void
     {
         $response = Http::get('https://api.scryfall.com/cards/random?q=-t:land year>2000');
         $this->card = $response->json();
         $this->evaluated = false;
-        $this->colors = [];
         $this->cmc = "";
     }
 

@@ -14,7 +14,7 @@
                     {{ $card['oracle_text'] }}
                 </p>
                 <input wire:model="cmc" type="number" class="input input-bordered" placeholder="Converted mana value">
-                <livewire:color-picker />
+                <x-color-picker wire:model='colors' />
                 <button class="btn btn-outline" wire:click="evaluate" @disabled(!$this->isEnabled())>Submit</button>
             @endif
 
