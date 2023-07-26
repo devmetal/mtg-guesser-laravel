@@ -45,6 +45,7 @@ class ColorPicker extends Component
             "symbol" => "C",
             "image" => "/C.svg",
             "label" => "Colorless",
+            "selected" => false,
         ]
     ];
 
